@@ -27,7 +27,7 @@ app.get("/api/questions-pending", (req, res) => {
 
 app.post("/api/questions-pending-send", (req, res) => {
   const { question, username, technology } = req.body;
-
+  //xx
   const questionForMongo = new SuggestedQuestion({
     question,
     technology,
