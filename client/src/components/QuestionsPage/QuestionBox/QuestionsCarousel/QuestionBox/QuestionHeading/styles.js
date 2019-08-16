@@ -14,7 +14,9 @@ export const QuestionHeading = styled.div`
 export const Text = styled.p(
   ({ type }) => css`
     font-size: 12px;
-    justify-self: flex-end;
+    justify-self: center;
+    display: flex;
+    align-items: center;
     grid-area: ${type === "levelText" ? "levelText" : "questionText"};
   `
 );

@@ -4,7 +4,7 @@ import * as S from "./styles";
 const QuestionHeading = ({
   currentApprovedQuestionIndex,
   chosenApprovedQuestions,
-  chosenQuestionsTechnology,
+  color,
   level
 }) => {
   const currentNumber =
@@ -16,11 +16,11 @@ const QuestionHeading = ({
   return (
     <S.QuestionHeading>
       <S.Text>Pytanie</S.Text>
-      <S.Box color={chosenQuestionsTechnology}>
+      <S.Box color={color}>
         {currentNumber}/{currentBoxLength}
       </S.Box>
       <S.Text type="levelText">Poziom</S.Text>
-      <S.Box level={level} color={chosenQuestionsTechnology} type="levelBox">
+      <S.Box level={level} color={color} type="levelBox">
         {level}
       </S.Box>
     </S.QuestionHeading>

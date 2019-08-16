@@ -5,8 +5,7 @@ import { withRouter } from "react-router-dom";
 import BottomButtons from "components/QuestionsPage/BottomButtons/BottomButtons";
 import NavButtons from "components/QuestionsPage/NavButtons/NavButtons";
 import * as routes from "routes/routes";
-import QuestionBox from "components/QuestionsPage/QuestionBox/QuestionBox";
-
+import QuestionsCarousel from "../components/QuestionsPage/QuestionBox/QuestionsCarousel/QuestionsCarousel";
 class QuestionsPage extends Component {
   componentDidMount() {
     const {
@@ -22,6 +21,7 @@ class QuestionsPage extends Component {
 
   render() {
     const {
+      allApprovedQuestions,
       chosenApprovedQuestions,
       chosenQuestionsTechnology,
       currentApprovedQuestionIndex,
@@ -31,6 +31,7 @@ class QuestionsPage extends Component {
       giveAnotherQuestion
     } = this.props;
     const chosenApprovedQuestionsLength = chosenApprovedQuestions.length;
+
     return (
       <>
         <NavButtons
@@ -39,12 +40,13 @@ class QuestionsPage extends Component {
           chosenQuestionsTechnology={chosenQuestionsTechnology}
           giveAnotherQuestion={giveAnotherQuestion}
         />
-        <QuestionBox
+        <QuestionsCarousel
           currentApprovedQuestionIndex={currentApprovedQuestionIndex}
           chosenApprovedQuestions={chosenApprovedQuestions}
           isAnswerShowed={isAnswerShowed}
-          chosenQuestionsTechnology={chosenQuestionsTechnology}
           answerHandler={answerHandler}
+          chosenQuestionsTechnology={chosenQuestionsTechnology}
+          allApprovedQuestions={allApprovedQuestions}
         />
         <BottomButtons
           giveAnotherQuestion={giveAnotherQuestion}
@@ -57,12 +59,14 @@ class QuestionsPage extends Component {
 }
 
 const mapStateToProps = ({
+  allApprovedQuestions,
   chosenApprovedQuestions,
   chosenQuestionsTechnology,
   currentApprovedQuestionIndex,
   isAnswerShowed,
   answerHandler
 }) => ({
+  allApprovedQuestions,
   chosenApprovedQuestions,
   chosenQuestionsTechnology,
   currentApprovedQuestionIndex,

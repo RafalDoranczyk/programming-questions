@@ -11,6 +11,7 @@ import Navigation from "components/Header/Navigation/Navigation";
 import SuggestQuestionPage from "containers/SuggestQuestionPage";
 import PendingQuestionsPage from "containers/PendingQuestionsPage";
 import PageWrapper, { WrapperForQuestionBox } from "./style";
+import AdminPage from "../containers/AdminPage";
 
 const AppView = ({
   chosenQuestionsTechnology,
@@ -51,6 +52,7 @@ const AppView = ({
             path={routes.pendingQuestions}
             render={() => <PendingQuestionsPage />}
           />
+          <Route path={routes.admin} render={() => <AdminPage />} />
         </Switch>
       </PageWrapper>
     </>

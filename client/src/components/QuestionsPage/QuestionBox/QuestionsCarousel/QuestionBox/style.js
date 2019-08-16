@@ -1,9 +1,9 @@
 import styled, { css } from "styled-components";
 
 export const QuestionBox = styled.div`
-  overflow: hidden;
+  border-radius: 10px;
+  margin: 0 10px;
   background-color: #fff;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 14px 14px rgba(0, 0, 0, 0.22);
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: 15% 20% auto 30px 1fr;

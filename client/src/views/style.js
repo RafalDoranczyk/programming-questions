@@ -37,8 +37,6 @@ export const WrapperForQuestionBox = styled.div`
   gap: 5px;
   animation: ${pageMove} 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   height: calc(100vh - 45px - 30px);
-  width: 90%;
-  margin: 0 auto;
 `;
 
 const PageWrapper = ({ color, children }) => {
