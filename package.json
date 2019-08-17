@@ -16,7 +16,8 @@
   "dependencies": {
     "concurrently": "^4.1.1",
     "express": "^4.17.1",
-    "mongoose": "^5.6.9"
+    "mongoose": "^5.6.9",
+    "react-slick": "^0.25.2"
   },
   "engines": {
     "node": "10.13.0"

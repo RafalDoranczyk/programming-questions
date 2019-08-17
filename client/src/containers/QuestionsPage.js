@@ -2,10 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import actions from "store";
 import { withRouter } from "react-router-dom";
-import BottomButtons from "components/QuestionsPage/BottomButtons/BottomButtons";
-import NavButtons from "components/QuestionsPage/NavButtons/NavButtons";
 import * as routes from "routes/routes";
-import QuestionsCarousel from "../components/QuestionsPage/QuestionBox/QuestionsCarousel/QuestionsCarousel";
+import Carousel from "../components/Carousel/Carousel";
+
 class QuestionsPage extends Component {
   componentDidMount() {
     const {
@@ -21,7 +20,6 @@ class QuestionsPage extends Component {
 
   render() {
     const {
-      allApprovedQuestions,
       chosenApprovedQuestions,
       chosenQuestionsTechnology,
       currentApprovedQuestionIndex,
@@ -30,43 +28,27 @@ class QuestionsPage extends Component {
       //fn
       giveAnotherQuestion
     } = this.props;
-    const chosenApprovedQuestionsLength = chosenApprovedQuestions.length;
 
     return (
-      <>
-        <NavButtons
-          chosenApprovedQuestions={chosenApprovedQuestions}
-          currentApprovedQuestionIndex={currentApprovedQuestionIndex}
-          chosenQuestionsTechnology={chosenQuestionsTechnology}
-          giveAnotherQuestion={giveAnotherQuestion}
-        />
-        <QuestionsCarousel
-          currentApprovedQuestionIndex={currentApprovedQuestionIndex}
-          chosenApprovedQuestions={chosenApprovedQuestions}
-          isAnswerShowed={isAnswerShowed}
-          answerHandler={answerHandler}
-          chosenQuestionsTechnology={chosenQuestionsTechnology}
-          allApprovedQuestions={allApprovedQuestions}
-        />
-        <BottomButtons
-          giveAnotherQuestion={giveAnotherQuestion}
-          currentApprovedQuestionIndex={currentApprovedQuestionIndex}
-          chosenApprovedQuestionsLength={chosenApprovedQuestionsLength}
-        />
-      </>
+      <Carousel
+        giveAnotherQuestion={giveAnotherQuestion}
+        currentApprovedQuestionIndex={currentApprovedQuestionIndex}
+        chosenApprovedQuestions={chosenApprovedQuestions}
+        isAnswerShowed={isAnswerShowed}
+        answerHandler={answerHandler}
+        chosenQuestionsTechnology={chosenQuestionsTechnology}
+      />
     );
   }
 }
 
 const mapStateToProps = ({
-  allApprovedQuestions,
   chosenApprovedQuestions,
   chosenQuestionsTechnology,
   currentApprovedQuestionIndex,
   isAnswerShowed,
   answerHandler
 }) => ({
-  allApprovedQuestions,
   chosenApprovedQuestions,
   chosenQuestionsTechnology,
   currentApprovedQuestionIndex,

@@ -11,7 +11,6 @@ const initialState = {
   allApprovedQuestions: [],
   chosenApprovedQuestions: [],
   chosenQuestionsTechnology: "",
-  currentApprovedQuestionIndex: 0,
   chosenTechnologyForFilter: "",
   // PENDING QUESTIONS
   allPendingQuestions: [],
@@ -122,11 +121,6 @@ const answerHandler = state =>
     isAnswerShowed: !state.isAnswerShowed
   });
 
-const giveAnotherQuestion = (state, questionIndex) => {
-  localStorage.setItem("currentApprovedQuestionIndex", questionIndex);
-  return updateState(state, { currentApprovedQuestionIndex: questionIndex });
-};
-
 const navigationHandler = state =>
   updateState(state, {
     isNavigationShowed: !state.isNavigationShowed,
@@ -140,9 +134,7 @@ const giveChosenApprovedQuestions = (state, chosenQuestionsTechnology) => {
   const allApprovedQuestionsFromStorage = JSON.parse(
     localStorage.getItem("allApprovedQuestions")
   );
-  const questionIndexFromStorage = Number(
-    localStorage.getItem("currentApprovedQuestionIndex")
-  );
+
   const allApprovedQuestions =
     allApprovedQuestionsFromStorage || state.allApprovedQuestions;
   const chosenApprovedQuestions = allApprovedQuestions.filter(
@@ -151,8 +143,7 @@ const giveChosenApprovedQuestions = (state, chosenQuestionsTechnology) => {
 
   return updateState(state, {
     chosenApprovedQuestions,
-    chosenQuestionsTechnology,
-    currentApprovedQuestionIndex: questionIndexFromStorage
+    chosenQuestionsTechnology
   });
 };
 
@@ -183,13 +174,9 @@ const reducer = (state = initialState, action) => {
     case types.POST_USER_QUESTION_FAILURE:
       return postUserQuestionFailure(state, action);
     // SYNC ACTIONS
-    case types.GIVE_ANOTHER_QUESTION:
-      return giveAnotherQuestion(state, action.questionIndex);
+
     case types.CHANGE_CHOSEN_TECHNOLOGY:
-      return changeChosenTechnology(
-        state,
-        action.chosenQuestionsTechnology
-      );
+      return changeChosenTechnology(state, action.chosenQuestionsTechnology);
     case types.GIVE_CHOSEN_APPROVED_QUESTIONS:
       return giveChosenApprovedQuestions(
         state,

@@ -1,17 +1,12 @@
 import styled, { css } from "styled-components";
-
 export const NavButtons = styled.div(
   ({ theme, color }) => css`
-    flex-basis: 10%;
     width: 90%;
-    transition: 0.3s;
+    height: 45px;
+    margin: 0 auto 10px auto;
     display: flex;
-    align-items: center;
+    transition: 0.3s;
     overflow-x: auto;
-    margin: 0 auto;
-    border-radius: 10px;
-
-    /* background-color: #fff; */
     scroll-behavior: smooth;
     &::-webkit-scrollbar-thumb {
       background-color: ${theme[color]};

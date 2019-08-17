@@ -10,8 +10,8 @@ import Spinner from "components/Spinner";
 import Navigation from "components/Header/Navigation/Navigation";
 import SuggestQuestionPage from "containers/SuggestQuestionPage";
 import PendingQuestionsPage from "containers/PendingQuestionsPage";
-import PageWrapper, { WrapperForQuestionBox } from "./style";
-import AdminPage from "../containers/AdminPage";
+import PageWrapper from "./style";
+import AdminPage from "containers/AdminPage";
 
 const AppView = ({
   chosenQuestionsTechnology,
@@ -34,14 +34,7 @@ const AppView = ({
       >
         <Switch>
           <Route exact path={routes.home} render={() => <HomePage />} />
-          <Route
-            path={routes.questions}
-            render={() => (
-              <WrapperForQuestionBox>
-                <QuestionsPage />
-              </WrapperForQuestionBox>
-            )}
-          />
+          <Route path={routes.questions} render={() => <QuestionsPage />} />
           <Route
             exact
             path={routes.suggestQuestion}

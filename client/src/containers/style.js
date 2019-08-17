@@ -1,20 +1,28 @@
 import styled, { css } from "styled-components";
+export const Wrapper = styled.div`
+  height: 85vh;
+  width: 95vw;
+  max-width: 700px;
+  margin: 0 auto;
+`;
 
 export const QuestionBox = styled.div`
+  height: 80%;
   border-radius: 10px;
   margin: 0 10px;
   background-color: #fff;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 15% 20% auto 30px 1fr;
   grid-template-areas:
-    "heading heading heading heading heading"
-    " question question question question question"
-    ". . . . author"
-    ". button button button ."
-    "answer answer answer answer answer";
-  gap: 10px;
+    "heading heading heading heading  "
+    " question question question question  "
+    ".  . author author"
+    ". button button ."
+    " answer answer answer answer  ";
+  gap: 20px;
   padding: 0 10px;
+  background-color: red;
 `;
 
 export const Question = styled.p`

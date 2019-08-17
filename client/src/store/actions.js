@@ -8,11 +8,6 @@ export const answerHandler = () => ({
   type: types.ANSWER_HANDLER
 });
 
-export const giveAnotherQuestion = questionIndex => ({
-  type: types.GIVE_ANOTHER_QUESTION,
-  questionIndex
-});
-
 export const filterPendingQuestions = chosenTechnologyForFilter => ({
   type: types.FILTER_PENDING_QUESTIONS,
   chosenTechnologyForFilter
