@@ -21,7 +21,7 @@ class Carousel extends Component {
       dots: false,
       initialSlide: Number(localStorage.getItem("slideIndex")),
       infinite: false,
-      speed: 500,
+      speed: 200,
       slidesToShow: 1,
       slidesToScroll: 1,
       swipeToSlide: true,

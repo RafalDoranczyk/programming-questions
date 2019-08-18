@@ -18,7 +18,6 @@ const AppView = ({
   isSpinnerShowed,
   isNavigationShowed
 }) => {
-  console.log(isSpinnerShowed);
   return (
     <ThemeProvider theme={theme}>
       <>
@@ -31,7 +30,7 @@ const AppView = ({
         />
 
         <PageWrapper
-          chosenQuestionsTechnology={chosenQuestionsTechnology}
+          isSpinnerShowed={isSpinnerShowed}
           color={chosenQuestionsTechnology}
         >
           <Switch>

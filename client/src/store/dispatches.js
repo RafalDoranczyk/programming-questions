@@ -3,6 +3,7 @@ import * as types from "./types";
 const getApprovedQuestionsAPI = "/api/questions-approved";
 const getPendingQuestionsAPI = "/api/questions-pending";
 const postUserQuestionAPI = "/api/questions-pending-send";
+const postGiveLikeToQuestionAPI = "/api/questions-like";
 
 const get = api =>
   fetch(api, { method: "GET" })
@@ -79,6 +80,23 @@ export const postUserQuestion = payload => dispatch => {
   return post(postUserQuestionAPI, payload)
     .then(res => dispatch(postUserQuestionSucceeded(res)))
     .catch(error => dispatch(postUserQuestionFailure(error)));
+};
+
+export const postRateQuestionSucceeded = ({ likes, id }) => ({
+  type: types.POST_RATE_QUESTION_SUCCEEDED,
+  likes,
+  id
+});
+export const postRateQuestionFailure = error => ({
+  type: types.POST_RATE_QUESTION_FAILURE,
+  error
+});
+
+export const postRateQuestion = (id, value) => dispatch => {
+  dispatch(postDataBegin());
+  return post(postGiveLikeToQuestionAPI, id, value)
+    .then(res => dispatch(postRateQuestionSucceeded(res)))
+    .catch(err => dispatch(postRateQuestionFailure(err)));
 };
 
 const handleErrors = response => {

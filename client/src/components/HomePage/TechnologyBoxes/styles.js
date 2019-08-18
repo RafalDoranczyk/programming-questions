@@ -10,9 +10,8 @@ to{
 `;
 export const Wrapper = styled.div`
   animation: ${pageMove} 0.5s ease;
-  max-width: 500px;
   display: grid;
-  margin: 30px auto;
+  margin: 30px 0;
   gap: 20px;
   grid-template-columns: repeat(auto-fill, 130px);
   justify-content: space-around;

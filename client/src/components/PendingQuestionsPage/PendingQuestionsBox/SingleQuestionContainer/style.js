@@ -16,7 +16,7 @@ const buttonMove = keyframes`
 `;
 
 export const SingleQuestionContainer = styled.div(
-  ({ isShowed }) => css`
+  ({ color }) => css`
     padding: 10px;
     display: grid;
     grid-template-columns: 1fr 20% 15%;
@@ -29,12 +29,27 @@ export const SingleQuestionContainer = styled.div(
       ".   likeBox likeBox"
       "button  likeBox likeBox";
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    transition: 0.3s ease;
+    transition: 0.5s ease box-shadow;
     cursor: pointer;
+    position: relative;
+    &::after {
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: ${color};
+      opacity: 0;
+      z-index: -1;
+      transition: 0.5s ease opacity;
+    }
+
     &:hover,
     &:focus-within {
       transform: scale(1.05);
       box-shadow: 0 1px 12px rgba(0, 0, 0, 0.12), 0 1px 12px rgba(0, 0, 0, 0.24);
+      &::after {
+        opacity: 0.15;
+      }
     }
   `
 );
@@ -53,17 +68,20 @@ export const Author = styled.p`
   font-style: italic;
 `;
 
-export const Button = styled.button`
-  grid-area: button;
-  box-shadow: 0 0 2px 1px #ddd;
-  border-radius: 5px;
-  font-size: 10px;
-  width: 80%;
-  &:focus,
-  &:hover {
-    animation: ${buttonMove} 0.3s ease;
-  }
-`;
+export const Button = styled.button(
+  ({}) => css`
+    grid-area: button;
+    box-shadow: 0 0 2px 1px #ddd;
+    border-radius: 5px;
+    font-size: 10px;
+    width: 80%;
+
+    &:focus,
+    &:hover {
+      animation: ${buttonMove} 0.3s ease;
+    }
+  `
+);
 
 export const Icon = styled.div(
   ({ color }) => css`

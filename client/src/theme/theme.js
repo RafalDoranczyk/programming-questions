@@ -6,9 +6,9 @@ const theme = {
   GIT: "#F05032",
   NODE: "#68A063",
   Redux: "#764ABC",
-  junior: "#62bd62",
-  mid: "#ffd787",
-  senior: "#ed7b7b"
+  junior: "#01FF70",
+  mid: "#FFDC00",
+  senior: "#FF4136"
 };
 
 export default theme;

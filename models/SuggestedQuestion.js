@@ -6,7 +6,7 @@ const SuggestedQuestion = new Schema({
   technology: { type: String, required: true },
   answer: { type: String, required: false },
   date: { type: Date, default: Date.now },
-  createdBy: { type: String, required: true },
+  author: { type: String, required: true },
   likes: { type: Number, required: true }
 });
 

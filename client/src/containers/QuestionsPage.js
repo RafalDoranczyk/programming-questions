@@ -22,10 +22,9 @@ class QuestionsPage extends Component {
     const {
       chosenApprovedQuestions,
       chosenQuestionsTechnology,
-      currentApprovedQuestionIndex,
       isAnswerShowed,
-      answerHandler
       //fn
+      answerHandler
     } = this.props;
 
     return (

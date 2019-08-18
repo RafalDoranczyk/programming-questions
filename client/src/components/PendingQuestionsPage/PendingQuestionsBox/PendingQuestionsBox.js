@@ -1,7 +1,7 @@
 import React from "react";
 import SingleQuestionContainer from "./SingleQuestionContainer/SingleQuestionContainer";
 import * as S from "./styles";
-const PendingQuestionsBox = ({ likeWaitingQuestions, allPendingQuestions }) => {
+const PendingQuestionsBox = ({ postRateQuestion, allPendingQuestions }) => {
   const pendingQuestionsToRender = allPendingQuestions.map(
     question =>
       question.isShowed && (
@@ -15,7 +15,7 @@ const PendingQuestionsBox = ({ likeWaitingQuestions, allPendingQuestions }) => {
           icon={question.icon}
           color={question.color}
           likes={question.likes}
-          onClick={() => likeWaitingQuestions(question._id)}
+          onClick={postRateQuestion}
         />
       )
   );

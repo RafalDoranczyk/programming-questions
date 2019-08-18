@@ -11,6 +11,9 @@ box-sizing: border-box;
   content: '';
   position: absolute;
 }
+body {
+    background-color: #fefefe;
+}
 
 input,
 textarea,

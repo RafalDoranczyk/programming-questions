@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 
 export const Wrapper = styled.div`
   margin: 10px auto 20px auto;
+  max-width: 600px;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;

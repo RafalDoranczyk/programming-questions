@@ -8,7 +8,6 @@ import AppView from "../views/AppView";
 class App extends Component {
   componentDidMount() {
     this.props.fetchApprovedQuestions();
-    // localStorage.clear();
   }
 
   componentDidUpdate() {

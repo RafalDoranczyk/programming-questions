@@ -52,13 +52,13 @@ const sharedStyle = css`
 export const TextArea = styled.textarea`
   ${sharedStyle}
   width: 280px;
-  height: 50px;
+  height: 70px;
 `;
 
 export const Input = styled.input`
   ${sharedStyle}
-  width: 140px;
-  height: 25px;
+  width: 180px;
+  height: 35px;
   text-align: center;
 `;
 export const Label = styled.label`

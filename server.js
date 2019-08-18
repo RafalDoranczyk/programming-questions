@@ -32,13 +32,30 @@ app.post("/api/questions-pending-send", (req, res) => {
     question,
     technology,
     answer: "Brak odpowiedzi",
-    createdBy: username,
+    author: username,
     level: "?",
     likes: 0
   });
   questionForMongo.save();
   const succesfullMessage = "Twoje pytanie zostało dodane!";
   res.json(succesfullMessage);
+});
+
+app.post("/api/questions-like", (req, res) => {
+  const { id, value } = req.body;
+  SuggestedQuestion.findOneAndUpdate(
+    { _id: id },
+    { $inc: { likes: value } },
+    { new: true },
+    (err, doc) => {
+      if (err) {
+        res.json(err);
+      } else {
+        const { likes } = doc;
+        res.json({ likes, id });
+      }
+    }
+  );
 });
 
 if (process.env.NODE_ENV === "production") {

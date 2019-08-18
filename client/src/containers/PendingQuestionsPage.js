@@ -13,9 +13,12 @@ class PendingQuestionsPage extends Component {
   render() {
     const {
       allPendingQuestions,
-      filterPendingQuestions,
       pendingTechnologies,
-      chosenTechnologyForFilter
+      chosenTechnologyForFilter,
+      isSpinnerShowed,
+      //fn
+      filterPendingQuestions,
+      postRateQuestion
     } = this.props;
 
     return (
@@ -28,7 +31,11 @@ class PendingQuestionsPage extends Component {
           BUTTON_MODELS={BUTTON_MODELS}
           allPendingQuestions={allPendingQuestions}
         />
-        <PendingQuestionsBox allPendingQuestions={allPendingQuestions} />
+        <PendingQuestionsBox
+          isSpinnerShowed={isSpinnerShowed}
+          postRateQuestion={postRateQuestion}
+          allPendingQuestions={allPendingQuestions}
+        />
       </>
     );
   }
@@ -37,18 +44,20 @@ const mapStateToProps = ({
   allPendingQuestions,
   chosenPendingQuestions,
   pendingTechnologies,
-  chosenTechnologyForFilter
+  chosenTechnologyForFilter,
+  isSpinnerShowed
 }) => ({
   allPendingQuestions,
   chosenPendingQuestions,
   pendingTechnologies,
-  chosenTechnologyForFilter
+  chosenTechnologyForFilter,
+  isSpinnerShowed
 });
 const mapDispatchToProps = dispatch => ({
   fetchPendingQuestions: () => dispatch(actions.fetchPendingQuestions()),
   filterPendingQuestions: technology =>
-    dispatch(actions.filterPendingQuestions(technology))
-  // likeWaitingQuestions: id => dispatch(actions.likeWaitingQuestions(id))
+    dispatch(actions.filterPendingQuestions(technology)),
+  postRateQuestion: id => dispatch(actions.postRateQuestion(id))
 });
 
 export default connect(

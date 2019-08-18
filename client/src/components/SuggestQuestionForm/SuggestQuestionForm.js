@@ -24,7 +24,7 @@ class SuggestQuestionForm extends Component {
             messageToUser: "Pytanie zostało wysłane.",
             question: "",
             technology: "",
-            messageToUser: ""
+            username: ""
           });
         })
         .catch(() =>
@@ -32,7 +32,7 @@ class SuggestQuestionForm extends Component {
             messageToUser: "Wystąpił błąd podczas wysyłania",
             question: "",
             technology: "",
-            messageToUser: ""
+            username: ""
           })
         );
     }

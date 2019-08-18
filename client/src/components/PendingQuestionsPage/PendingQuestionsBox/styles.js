@@ -4,7 +4,7 @@ export const PendingQuestionsBox = styled.div`
   display: grid;
   grid-auto-rows: 140px;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 15px;
+  gap: 20px;
   /* background-color: red; */
   height: 100%;
   width: 90%;

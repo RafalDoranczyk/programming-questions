@@ -19,7 +19,7 @@ export const GridWrapper = styled.div`
     " question question question question  "
     ".  . author author"
     ". button button ."
-    " answer answer answer answer  ";
+    " answer answer answer answer ";
   gap: 20px;
   margin: 0 10px;
   padding: 0 10px;

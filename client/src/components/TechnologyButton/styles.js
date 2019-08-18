@@ -35,8 +35,8 @@ export const ButtonToChoose = styled.button(
       height: 100%;
       transition: 0.3s ease;
       transform: ${isActive
-        ? "translateX(0) scale(1) "
-        : "translateX(-100%) scale(0)"};
+        ? "translateX(0) "
+        : "translateX(-100%)"};
       border-radius: 10px;
       background-color: ${color};
       opacity: 0.3;

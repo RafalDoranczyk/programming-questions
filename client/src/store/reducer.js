@@ -55,7 +55,6 @@ const fetchApprovedQuestionsSucceeded = (state, allApprovedQuestions) => {
 const fetchApprovedQuestionsFailure = (state, err) =>
   updateState(state, { isSpinnerShowed: false });
 
-// FETCHING ALL QUESTIONS THAT ARE ON PENDING LIST
 const fetchPendingQuestionsSucceeded = (state, allPendingQuestions) => {
   const pendingTechnologies = [
     ...new Set(allPendingQuestions.map(question => question.technology))
@@ -90,15 +89,29 @@ const postUserQuestionSucceeded = state => {
     isSpinnerShowed: false
   });
 };
-
 const postUserQuestionFailure = state =>
   updateState(state, { isSpinnerShowed: false });
 
+const postRateQuestionSucceeded = (state, likes, id) => {
+  const allPendingQuestions = state.allPendingQuestions.slice();
+  const index = allPendingQuestions.findIndex(question => question._id === id);
+  const questionToUpdate = allPendingQuestions[index];
+  questionToUpdate.likes = likes;
+  return updateState(state, { isSpinnerShowed: false, allPendingQuestions });
+};
+
+const postRateQuestionFailure = (state, error) => {
+  console.log(error);
+  return updateState(state, { isSpinnerShowed: false });
+};
 // SYNC ACTIONS
+
+const clearStorageOnPageChange = state => {
+  return updateState(state);
+};
 
 const filterPendingQuestions = (state, chosenTechnologyForFilter) => {
   let allPendingQuestions = state.allPendingQuestions.slice();
-
   if (chosenTechnologyForFilter === "Wszystkie") {
     allPendingQuestions.forEach(question => (question.isShowed = true));
   } else {
@@ -116,6 +129,7 @@ const filterPendingQuestions = (state, chosenTechnologyForFilter) => {
     chosenTechnologyForFilter
   });
 };
+
 // UX HANDLERS
 
 const answerHandler = state =>
@@ -152,7 +166,6 @@ const giveChosenApprovedQuestions = (state, chosenQuestionsTechnology) => {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     // ASYNC
-
     // fetches
     case types.FETCH_DATA_BEGIN:
       return fetchDataBegin(state);
@@ -175,6 +188,10 @@ const reducer = (state = initialState, action) => {
       return postUserQuestionSucceeded(state, action);
     case types.POST_USER_QUESTION_FAILURE:
       return postUserQuestionFailure(state, action);
+    case types.POST_RATE_QUESTION_SUCCEEDED:
+      return postRateQuestionSucceeded(state, action.likes, action.id);
+    case types.POST_RATE_QUESTION_FAILURE:
+      return postRateQuestionFailure(state, action);
     // SYNC ACTIONS
 
     case types.CHANGE_CHOSEN_TECHNOLOGY:
