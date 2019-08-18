@@ -6,11 +6,13 @@ const InfoAboutSection = () => {
     <S.Wrapper>
       <S.Heading> Pytania oczekujące na dodanie do aplikacji</S.Heading>
       <S.Text>
-        W tym miejscu znajdziesz pytania od użytkowników. Możesz
-        dodać odpowiedź do pytania oraz zagłosować, jeżeli chcesz, aby pytanie
-        zostało dodane do aplikacji.
+        W tym miejscu znajdują się nadesłane przez użytkowników pytania oraz
+        odpowiedzi. Możesz zagłosować na pytanie, jeżeli chesz, aby zostało
+        dodane do aplikacji.
       </S.Text>
-      <S.Text> Kliknij w odpowiedni przycisk, aby wyfiltrować pytania. </S.Text>
+      <S.Text center>
+        Kliknij w odpowiedni przycisk, aby wyfiltrować pytania.{" "}
+      </S.Text>
     </S.Wrapper>
   );
 };

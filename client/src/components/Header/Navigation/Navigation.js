@@ -36,6 +36,7 @@ const Navigation = ({
   menuItems.forEach(
     item =>
       (item.onClick = () => {
+        localStorage.removeItem("slideIndex");
         changeChosenTechnology();
         navigationHandler();
       })

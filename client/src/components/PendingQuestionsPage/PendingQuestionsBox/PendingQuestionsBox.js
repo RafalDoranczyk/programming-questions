@@ -8,7 +8,7 @@ const PendingQuestionsBox = ({ likeWaitingQuestions, allPendingQuestions }) => {
         <SingleQuestionContainer
           key={question._id}
           isShowed={question.isShowed}
-          createdBy={question.createdBy}
+          author={question.author}
           date={question.date}
           id={question._id}
           question={question.question}

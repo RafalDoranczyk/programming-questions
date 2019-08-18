@@ -24,19 +24,16 @@ class QuestionsPage extends Component {
       chosenQuestionsTechnology,
       currentApprovedQuestionIndex,
       isAnswerShowed,
-      answerHandler,
+      answerHandler
       //fn
-      giveAnotherQuestion
     } = this.props;
 
     return (
       <Carousel
-        giveAnotherQuestion={giveAnotherQuestion}
-        currentApprovedQuestionIndex={currentApprovedQuestionIndex}
-        chosenApprovedQuestions={chosenApprovedQuestions}
+        color={chosenQuestionsTechnology}
         isAnswerShowed={isAnswerShowed}
         answerHandler={answerHandler}
-        chosenQuestionsTechnology={chosenQuestionsTechnology}
+        allSlides={chosenApprovedQuestions}
       />
     );
   }
@@ -58,8 +55,6 @@ const mapStateToProps = ({
 
 const mapDispatchToProps = dispatch => ({
   answerHandler: () => dispatch(actions.answerHandler()),
-  giveAnotherQuestion: questionIndex =>
-    dispatch(actions.giveAnotherQuestion(questionIndex)),
   giveChosenApprovedQuestions: chosenQuestionsTechnology =>
     dispatch(actions.giveChosenApprovedQuestions(chosenQuestionsTechnology))
 });

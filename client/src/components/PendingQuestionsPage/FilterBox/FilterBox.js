@@ -1,6 +1,7 @@
 import React from "react";
 import { WrapperForAllButtons } from "../../TechnologyButton/styles";
 import ButtonToChoose from "../../TechnologyButton/TechnologyButton";
+import * as S from "./style";
 const FilterBox = ({
   BUTTON_MODELS,
   pendingTechnologies,
@@ -29,7 +30,13 @@ const FilterBox = ({
     />
   ));
 
-  return <WrapperForAllButtons>{buttonsToRender}</WrapperForAllButtons>;
+  return (
+    <S.FilterBox>
+      <WrapperForAllButtons>
+        {buttonsToRender.length > 1 && buttonsToRender}
+      </WrapperForAllButtons>
+    </S.FilterBox>
+  );
 };
 
 export default FilterBox;

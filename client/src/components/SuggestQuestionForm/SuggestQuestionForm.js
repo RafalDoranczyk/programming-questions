@@ -17,17 +17,24 @@ class SuggestQuestionForm extends Component {
       this.setState({ messageToUser: "Uzupełnij cały formularz." });
     } else {
       const payload = { question, username, technology };
-      const promise1 = new Promise((resolve, reject) => {
-        resolve(this.props.onSubmit(payload));
-      });
-      promise1.then(
-        this.setState({
-          messageToUser: "Pytanie zostało wysłane.",
-          question: "",
-          username: "",
-          technology: ""
+      this.props
+        .onSubmit(payload)
+        .then(() => {
+          this.setState({
+            messageToUser: "Pytanie zostało wysłane.",
+            question: "",
+            technology: "",
+            messageToUser: ""
+          });
         })
-      );
+        .catch(() =>
+          this.setState({
+            messageToUser: "Wystąpił błąd podczas wysyłania",
+            question: "",
+            technology: "",
+            messageToUser: ""
+          })
+        );
     }
   };
 
@@ -47,7 +54,7 @@ class SuggestQuestionForm extends Component {
 
     return (
       <S.Wrapper>
-        <p>Wybierz technologię swojego pytania</p>
+        <p>1. Wybierz technologię pytania</p>
         <TechnologyToChoose
           onClick={this.handleChange}
           technology={technology}
@@ -55,18 +62,19 @@ class SuggestQuestionForm extends Component {
 
         <S.MessageToUser>{messageToUser}</S.MessageToUser>
         <S.Form type="submit" onSubmit={this.submitForm}>
-          <S.Label htmlFor="question">Zaproponuj Pytanie</S.Label>
+          <S.Label htmlFor="question">2. Wpisz treść pytania</S.Label>
           <S.TextArea
             id="question"
             value={question}
             onChange={e => this.handleChange(e, "question")}
           />
-          <S.Label htmlFor="username">Wpisz swój nick lub imię</S.Label>
+          <S.Label htmlFor="username">3. Podaj swoje imię lub nick</S.Label>
           <S.Input
             id="username"
             value={username}
             onChange={e => this.handleChange(e, "username")}
           />
+
           <S.Button>Wyślij</S.Button>
         </S.Form>
       </S.Wrapper>

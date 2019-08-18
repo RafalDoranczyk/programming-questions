@@ -17,25 +17,23 @@ const buttonMove = keyframes`
 
 export const SingleQuestionContainer = styled.div(
   ({ isShowed }) => css`
-    width: 95%;
     padding: 10px;
-    max-width: 350px;
-    margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 40%;
-    grid-template-rows: 1fr 1fr auto 15% 25%;
+    grid-template-columns: 1fr 20% 15%;
+    grid-template-rows: 1fr 1fr auto 10% 25%;
     gap: 5px;
     grid-template-areas:
-      "question  icon"
-      "question  icon"
-      " author  ."
-      ".   likeBox"
-      "button  likeBox";
+      "question  question icon"
+      "question  question icon"
+      " author  . ."
+      ".   likeBox likeBox"
+      "button  likeBox likeBox";
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     transition: 0.3s ease;
-
+    cursor: pointer;
     &:hover,
     &:focus-within {
+      transform: scale(1.05);
       box-shadow: 0 1px 12px rgba(0, 0, 0, 0.12), 0 1px 12px rgba(0, 0, 0, 0.24);
     }
   `
@@ -69,6 +67,7 @@ export const Button = styled.button`
 
 export const Icon = styled.div(
   ({ color }) => css`
+    align-self: flex-start;
     grid-area: icon;
     display: flex;
     justify-content: center;

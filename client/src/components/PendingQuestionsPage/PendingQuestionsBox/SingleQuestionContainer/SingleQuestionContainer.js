@@ -6,7 +6,7 @@ const SingleQuestionContainer = ({
   question,
   date,
   id,
-  createdBy,
+  author,
   icon,
   isShowed,
   likes,
@@ -19,7 +19,7 @@ const SingleQuestionContainer = ({
         <Icon icon={icon} />
       </S.Icon>
       <S.Author>
-        Autor: <span>{createdBy}</span>
+        Autor: <span>{author}</span>
       </S.Author>
 
       <S.Button>Pokaż odpowiedzi (3)</S.Button>

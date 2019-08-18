@@ -17,39 +17,42 @@ const AppView = ({
   chosenQuestionsTechnology,
   isSpinnerShowed,
   isNavigationShowed
-}) => (
-  <ThemeProvider theme={theme}>
-    <>
-      <Global />
-      <Header />
-      {isSpinnerShowed && <Spinner />}
-      <Navigation
-        color={chosenQuestionsTechnology}
-        isNavigationShowed={isNavigationShowed}
-      />
+}) => {
+  console.log(isSpinnerShowed);
+  return (
+    <ThemeProvider theme={theme}>
+      <>
+        <Global />
+        <Header />
+        {isSpinnerShowed && <Spinner />}
+        <Navigation
+          color={chosenQuestionsTechnology}
+          isNavigationShowed={isNavigationShowed}
+        />
 
-      <PageWrapper
-        chosenQuestionsTechnology={chosenQuestionsTechnology}
-        color={chosenQuestionsTechnology}
-      >
-        <Switch>
-          <Route exact path={routes.home} render={() => <HomePage />} />
-          <Route path={routes.questions} render={() => <QuestionsPage />} />
-          <Route
-            exact
-            path={routes.suggestQuestion}
-            render={() => <SuggestQuestionPage />}
-          />
-          <Route
-            exact
-            path={routes.pendingQuestions}
-            render={() => <PendingQuestionsPage />}
-          />
-          <Route path={routes.admin} render={() => <AdminPage />} />
-        </Switch>
-      </PageWrapper>
-    </>
-  </ThemeProvider>
-);
+        <PageWrapper
+          chosenQuestionsTechnology={chosenQuestionsTechnology}
+          color={chosenQuestionsTechnology}
+        >
+          <Switch>
+            <Route exact path={routes.home} render={() => <HomePage />} />
+            <Route path={routes.questions} render={() => <QuestionsPage />} />
+            <Route
+              exact
+              path={routes.suggestQuestion}
+              render={() => <SuggestQuestionPage />}
+            />
+            <Route
+              exact
+              path={routes.pendingQuestions}
+              render={() => <PendingQuestionsPage />}
+            />
+            <Route path={routes.admin} render={() => <AdminPage />} />
+          </Switch>
+        </PageWrapper>
+      </>
+    </ThemeProvider>
+  );
+};
 
 export default AppView;

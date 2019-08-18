@@ -2,12 +2,13 @@ import styled, { css } from "styled-components";
 
 export const WrapperForAllButtons = styled.div`
   display: grid;
-
-  width: 90%;
   margin: 0 auto;
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   grid-auto-rows: 35px;
   gap: 15px;
+  padding: 15px;
+
+  background-color: #fff;
 `;
 
 export const ButtonToChoose = styled.button(
@@ -17,7 +18,6 @@ export const ButtonToChoose = styled.button(
     justify-content: space-around;
     transform: ${isActive && "scale(1.1)"};
     transition: 0.3s ease transform;
-
     border-radius: 10px;
     background-color: transparent;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);

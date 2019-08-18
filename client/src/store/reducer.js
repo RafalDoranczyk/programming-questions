@@ -20,7 +20,8 @@ const initialState = {
   isMenuShowed: false,
   isAnswerShowed: false,
   isSpinnerShowed: false,
-  isNavigationShowed: false
+  isNavigationShowed: false,
+  afterFormSubmitMessage: ""
 };
 
 // ASYNC ACTIONS
@@ -80,8 +81,9 @@ const fetchPendingQuestionsFailure = (state, err) => {
 };
 
 // FUNCTION ALLOWS USER TO SEND HIS OWN QUESTION
-const postDataBegin = state => updateState(state, { isSpinnerShowed: true });
-
+const postDataBegin = state => {
+  return updateState(state, { isSpinnerShowed: true });
+};
 const postUserQuestionSucceeded = state => {
   localStorage.removeItem("allQuestions");
   return updateState(state, {

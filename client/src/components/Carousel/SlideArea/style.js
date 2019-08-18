@@ -1,9 +1,16 @@
-import styled, { css } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
+const pageMove = keyframes`
+from {
+  opacity: 0; 
+  transform: translateY(40px)};
+ to{
+   opacity: 1;
+    transform: translateY(0) };
+ `;
 
-export const QuestionBox = styled.div`
-  border-radius: 10px;
-  margin: 0 10px;
-  background-color: #fff;
+export const GridWrapper = styled.div`
+  animation: ${pageMove} 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  height: 100%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 15% 20% auto 30px 1fr;
@@ -14,7 +21,10 @@ export const QuestionBox = styled.div`
     ". button button ."
     " answer answer answer answer  ";
   gap: 20px;
+  margin: 0 10px;
   padding: 0 10px;
+  border-radius: 10px;
+  background-color: #fff;
 `;
 
 export const Question = styled.p`

@@ -56,8 +56,7 @@ export const fetchPendingQuestionsFailure = err => ({
 });
 
 export const fetchPendingQuestions = () => dispatch => {
-  console.log("rozpoczynam pobieranie");
-  dispatch(fetchDataBegin());
+  dispatch(postDataBegin());
   return get(getPendingQuestionsAPI)
     .then(res => dispatch(fetchPendingQuestionsSucceeded(res)))
     .catch(error => dispatch(fetchPendingQuestionsFailure(error)));
