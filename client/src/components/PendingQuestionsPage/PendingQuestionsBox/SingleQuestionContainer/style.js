@@ -29,7 +29,7 @@ export const SingleQuestionContainer = styled.div(
       ".   likeBox likeBox"
       "button  likeBox likeBox";
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    transition: 0.5s ease box-shadow;
+    transition: 0.5s ease transform;
     cursor: pointer;
     position: relative;
     &::after {
@@ -98,12 +98,13 @@ export const Icon = styled.div(
 export const LikeBox = styled.div`
   grid-area: likeBox;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 25% 1fr 25%;
   grid-template-rows: repeat(2, 1fr);
   grid-template-areas:
-    "allLikes likeButton"
-    "allLikes dislikeButton";
+    "likeButton allLikes dislikeButton"
+    "likeButton allLikes dislikeButton";
   gap: 5px;
+  justify-content: center;
   font-size: 14px;
 `;
 
@@ -122,8 +123,8 @@ export const LikeButton = styled.button(
     display: flex;
     justify-content: center;
     align-items: center;
-    grid-area: ${type === "like" && "likeButton"};
-    font-size: 15px;
+    grid-area: ${type === "like" ? "likeButton" : "dislikeButton"};
+    font-size: 18px;
     position: relative;
     z-index: 0;
     color: ${type === "like" ? "green" : "red"};

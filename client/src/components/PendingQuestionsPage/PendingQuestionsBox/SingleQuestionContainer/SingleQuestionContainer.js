@@ -9,10 +9,8 @@ const SingleQuestionContainer = ({
   author,
   icon,
   likes,
-  onClick,
-  isSpinnerShowed
+  onClick
 }) => {
-  console.log(isSpinnerShowed);
   return (
     <S.SingleQuestionContainer color={color}>
       <S.Question>{question}</S.Question>
@@ -28,14 +26,11 @@ const SingleQuestionContainer = ({
       <S.LikeBox>
         <S.AllLikes>{likes}</S.AllLikes>
         <S.LikeButton
-          disabled={isSpinnerShowed && "true"}
-          isDisabled={isSpinnerShowed && "true"}
           type="like"
           onClick={() => onClick({ id, value: 1 })}
           className="far fa-thumbs-up"
         />
         <S.LikeButton
-          disabled={isSpinnerShowed}
           type="dislike"
           onClick={() => onClick({ id, value: -1 })}
           className="far fa-thumbs-down"

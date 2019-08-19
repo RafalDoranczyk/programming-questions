@@ -7,7 +7,6 @@ const PendingQuestionsBox = ({ postRateQuestion, allPendingQuestions }) => {
       question.isShowed && (
         <SingleQuestionContainer
           key={question._id}
-          isShowed={question.isShowed}
           author={question.author}
           date={question.date}
           id={question._id}

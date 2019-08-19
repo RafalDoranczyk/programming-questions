@@ -69,6 +69,7 @@ const fetchPendingQuestionsSucceeded = (state, allPendingQuestions) => {
       }
     })
   );
+
   return updateState(state, {
     allPendingQuestions,
     pendingTechnologies,
@@ -93,6 +94,9 @@ const postUserQuestionFailure = state =>
   updateState(state, { isSpinnerShowed: false });
 
 const postRateQuestionSucceeded = (state, likes, id) => {
+  const likedQuestions = [localStorage.getItem("likedQuestions")];
+  likedQuestions.push(id);
+  localStorage.setItem("likedQuestions", likedQuestions);
   const allPendingQuestions = state.allPendingQuestions.slice();
   const index = allPendingQuestions.findIndex(question => question._id === id);
   const questionToUpdate = allPendingQuestions[index];

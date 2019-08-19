@@ -39,6 +39,7 @@ class Carousel extends Component {
     const sliders = allSlides.map((q, index) => (
       <S.SingleSlideWrapper key={index}>
         <SlideArea
+          isActive={slideIndex === index}
           allSlides={allSlides}
           index={index}
           level={q.level}
