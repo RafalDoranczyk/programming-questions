@@ -11,7 +11,7 @@ const SuggestedQuestion = require("./models/SuggestedQuestion");
 // Define Global Variables
 const app = express();
 const store = new MongoDBStore({
-  uri: "mongodb+srv://Rafix111:Rasengan1@rq-2jsha.mongodb.net/RekrutacjaIT",
+  uri: config.ses,
   collection: "sessions"
 });
 const PORT = process.env.PORT || 5000;
@@ -32,15 +32,15 @@ app.use(
 );
 
 app.get("/api/questions-approved", (req, res) => {
-  const q = "Przykładowe pytanie z Django ?";
-  const a = "Odpowiedź";
-  const newQuestion = new ApprovedQuestion({
-    question: q,
-    technology: "Django",
-    answer: a,
-    level: "senior",
-    author: "Admin"
-  });
+  // const q = "Przykładowe pytanie z Django ?";
+  // const a = "Odpowiedź";
+  // const newQuestion = new ApprovedQuestion({
+  //   question: q,
+  //   technology: "Django",
+  //   answer: a,
+  //   level: "senior",
+  //   author: "Admin"
+  // });
   // newQuestion.save();
   ApprovedQuestion.find((err, doc) => res.json(doc));
 });
