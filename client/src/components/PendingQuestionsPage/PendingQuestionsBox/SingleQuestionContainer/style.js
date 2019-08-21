@@ -19,15 +19,15 @@ export const SingleQuestionContainer = styled.div(
   ({ color }) => css`
     padding: 10px;
     display: grid;
-    grid-template-columns: 1fr 20% 15%;
-    grid-template-rows: 1fr 1fr auto 10% 25%;
+    grid-template-columns: 1fr 20% 40px;
+    grid-template-rows: 1fr 1fr auto 10px 30px;
     gap: 5px;
     grid-template-areas:
       "question  question icon"
       "question  question icon"
       " author  . ."
-      ".   likeBox likeBox"
-      "button  likeBox likeBox";
+      ".   . likeBox"
+      "button  . likeBox";
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     transition: 0.5s ease transform;
     cursor: pointer;
@@ -68,20 +68,23 @@ export const Author = styled.p`
   font-style: italic;
 `;
 
-export const Button = styled.button(
-  ({}) => css`
-    grid-area: button;
-    box-shadow: 0 0 2px 1px #ddd;
-    border-radius: 5px;
-    font-size: 10px;
-    width: 80%;
-
-    &:focus,
-    &:hover {
-      animation: ${buttonMove} 0.3s ease;
-    }
-  `
-);
+export const Button = styled.button`
+  grid-area: button;
+  display: flex;
+  justify-content: space-evenly;
+  box-shadow: 0 0 2px 1px #ddd;
+  border-radius: 5px;
+  font-size: 12px;
+  width: 80%;
+  padding: 0 10px;
+  & > i {
+    height: 100%;
+  }
+  &:focus,
+  &:hover {
+    animation: ${buttonMove} 0.3s ease;
+  }
+`;
 
 export const Icon = styled.div(
   ({ color }) => css`
@@ -95,46 +98,20 @@ export const Icon = styled.div(
   `
 );
 
-export const LikeBox = styled.div`
-  grid-area: likeBox;
-  display: grid;
-  grid-template-columns: 25% 1fr 25%;
-  grid-template-rows: repeat(2, 1fr);
-  grid-template-areas:
-    "likeButton allLikes dislikeButton"
-    "likeButton allLikes dislikeButton";
-  gap: 5px;
-  justify-content: center;
-  font-size: 14px;
-`;
-
-export const AllLikes = styled.div`
-  grid-area: allLikes;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
-  background-color: #66f;
-  color: white;
-`;
-
-export const LikeButton = styled.button(
-  ({ type }) => css`
+export const LikeBox = styled.div(
+  ({ likes }) => css`
+    grid-area: likeBox;
+    font-size: 14px;
     display: flex;
     justify-content: center;
     align-items: center;
-    grid-area: ${type === "like" ? "likeButton" : "dislikeButton"};
-    font-size: 18px;
-    position: relative;
-    z-index: 0;
-    color: ${type === "like" ? "green" : "red"};
-    &:focus,
-    &:hover {
-      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 1px rgba(0, 0, 0, 0.24);
-    }
+    color: #222;
+    border-radius: 5px;
 
-    /* ::before {
-      position: relative;
-    } */
+    background-color: ${likes > 0
+      ? "#7bc087"
+      : likes < 0
+      ? "#fe4a7a "
+      : "#e6e6ea "};
   `
 );

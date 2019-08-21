@@ -5,7 +5,9 @@ export const Menu = styled.ul`
   display: flex;
   flex-flow: column nowrap;
   list-style-type: none;
-
   justify-content: space-around;
   padding: 10px;
+  @media (min-width: 800px) {
+    flex-flow: row nowrap;
+  }
 `;

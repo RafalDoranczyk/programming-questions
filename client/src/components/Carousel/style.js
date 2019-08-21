@@ -8,4 +8,5 @@ export const CarouselWrapper = styled.div`
 
 export const SingleSlideWrapper = styled.div`
   height: 75vh;
+  padding: 10px;
 `;

@@ -7,7 +7,7 @@ const QuestionHeading = ({ index, allSlides, color, level, isActive }) => {
   return (
     <S.QuestionHeading>
       <S.Text>Pytanie</S.Text>
-      <S.Box color={color}>
+      <S.Box type="questionBox" color={color}>
         {currentNumber}/{currentBoxLength}
       </S.Box>
       <S.Text type="levelText">Poziom</S.Text>

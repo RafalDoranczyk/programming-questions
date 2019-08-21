@@ -5,9 +5,10 @@ const SuggestedQuestion = new Schema({
   question: { type: String, required: true },
   technology: { type: String, required: true },
   answer: { type: String, required: false },
-  date: { type: Date, default: Date.now },
+  level: { type: String, required: true },
   author: { type: String, required: true },
-  likes: { type: Number, required: true }
+  likes: { type: Number, required: true },
+  date: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model("suggestedQuestions", SuggestedQuestion);
+module.exports = mongoose.model("questions-pending", SuggestedQuestion);

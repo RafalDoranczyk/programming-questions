@@ -6,6 +6,9 @@ const theme = {
   GIT: "#F05032",
   NODE: "#68A063",
   Redux: "#764ABC",
+  Python: "#3776AB",
+  Sass: "#CC6699",
+  Django: "#092E20",
   junior: "#01FF70",
   mid: "#FFDC00",
   senior: "#FF4136"

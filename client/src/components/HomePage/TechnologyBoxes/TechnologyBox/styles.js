@@ -20,7 +20,7 @@ export const Wrapper = styled.div(
       height: 0;
       top: 0;
       left: 0;
-      border-top: 150px solid ${color};
+      border-top: 130px solid ${color};
       border-right: ${width} solid transparent;
       opacity: 0.3;
     }

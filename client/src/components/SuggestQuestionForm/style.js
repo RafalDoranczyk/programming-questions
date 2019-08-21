@@ -29,7 +29,7 @@ export const MessageToUser = styled.p`
 export const Form = styled.form`
   background-color: #fff;
   margin-top: 20px;
-  height: 200px;
+  height: 260px;
   display: flex;
   justify-content: space-around;
   flex-flow: column nowrap;
@@ -51,7 +51,8 @@ const sharedStyle = css`
 
 export const TextArea = styled.textarea`
   ${sharedStyle}
-  width: 280px;
+  width: 90vw;
+  max-width: 450px;
   height: 70px;
 `;
 
@@ -70,4 +71,9 @@ export const Button = styled.button`
   background-color: #88f;
   border-radius: 5px;
   color: #fff;
+  transition: 0.3s;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.24);
+  &:hover {
+    box-shadow: 0 6px 9px rgba(0, 0, 0, 0.12), 0 6px 9px rgba(0, 0, 0, 0.24);
+  }
 `;

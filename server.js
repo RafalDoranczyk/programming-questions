@@ -18,6 +18,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get("/api/questions-approved", (req, res) => {
+  const q = "Przykładowe pytanie z Django ?";
+  const a = "Odpowiedź";
+  const newQuestion = new ApprovedQuestion({
+    question: q,
+    technology: "Django",
+    answer: a,
+    level: "senior",
+    author: "Admin"
+  });
+  // newQuestion.save();
   ApprovedQuestion.find((err, doc) => res.json(doc));
 });
 

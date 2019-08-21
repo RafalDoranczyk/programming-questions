@@ -15,5 +15,5 @@ export const Wrapper = styled.div`
   gap: 20px;
   grid-template-columns: repeat(auto-fill, 130px);
   justify-content: space-around;
-  grid-auto-rows: 150px;
+  grid-auto-rows: 130px;
 `;

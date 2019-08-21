@@ -6,6 +6,9 @@ export const MenuIconWrapper = styled.button`
   position: relative;
   background-color: transparent;
   margin-right: auto;
+  @media (min-width: 800px) {
+    display: none;
+  }
 `;
 
 export const SingleBar = styled.span`

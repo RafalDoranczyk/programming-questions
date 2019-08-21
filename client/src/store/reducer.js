@@ -30,10 +30,10 @@ const fetchDataBegin = state => updateState(state, { isSpinnerShowed: true });
 // MAIN FUNCTION, STARTS ON APP OPEN
 
 const fetchApprovedQuestionsSucceeded = (state, allApprovedQuestions) => {
-  localStorage.setItem(
-    "allApprovedQuestions",
-    JSON.stringify(allApprovedQuestions)
-  );
+  // localStorage.setItem(
+  //   "allApprovedQuestions",
+  //   JSON.stringify(allApprovedQuestions)
+  // );
   const createdTechnologyButtons = C.BUTTON_MODELS.filter(({ technology }) =>
     allApprovedQuestions.find(question => question.technology === technology)
   );

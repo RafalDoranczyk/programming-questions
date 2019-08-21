@@ -7,7 +7,6 @@ import Header from "components/Header/Header";
 import HomePage from "containers/HomePage";
 import QuestionsPage from "containers/QuestionsPage";
 import Spinner from "components/Spinner";
-import Navigation from "components/Header/Navigation/Navigation";
 import SuggestQuestionPage from "containers/SuggestQuestionPage";
 import PendingQuestionsPage from "containers/PendingQuestionsPage";
 import PageWrapper from "./style";
@@ -22,12 +21,11 @@ const AppView = ({
     <ThemeProvider theme={theme}>
       <>
         <Global />
-        <Header />
-        {isSpinnerShowed && <Spinner />}
-        <Navigation
-          color={chosenQuestionsTechnology}
+        <Header
           isNavigationShowed={isNavigationShowed}
+          color={chosenQuestionsTechnology}
         />
+        {isSpinnerShowed && <Spinner />}
 
         <PageWrapper
           isSpinnerShowed={isSpinnerShowed}

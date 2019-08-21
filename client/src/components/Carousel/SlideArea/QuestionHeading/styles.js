@@ -1,18 +1,6 @@
 import styled, { css, keyframes } from "styled-components";
 
-const juniorMove = keyframes`
-from{
-  opacity: 0;
-  transform: translateY(-100%)
-}
-to{
-opacity: 1;
-transform: translateY(0)
-`;
-
-const seniorMove = keyframes``;
-
-const midMove = keyframes`
+const boxMove = keyframes`
   from {
     transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
     animation-timing-function: ease-in;
@@ -63,32 +51,15 @@ export const Text = styled.p(
   `
 );
 
-const levelBoxStyle = (level, isActive) => css`
-  opacity: 0;
-  grid-area: levelBox;
-  border: none;
-  ${(level === "junior") & isActive &&
-    level &&
-    css`
-      animation: ${juniorMove} 0.8s ease both;
-    `};
-  ${(level === "mid") & isActive &&
-    level &&
-    css`
-      animation: ${midMove} 0.8s linear both;
-    `};
-  ${(level === "senior") & isActive &&
-    level &&
-    css`
-      animation: ${seniorMove} 0.5s ease both infinite;
-    `};
-`;
-
-const questionBoxStyle = (theme, level) => css`
-  grid-area: questionBox;
-`;
 export const Box = styled.div(
   ({ color, type, theme, level, isActive }) => css`
+    ${isActive &&
+      isActive &&
+      css`
+        animation: ${boxMove} 0.6s 0.1s ease both;
+      `};
+    opacity: ${type === "levelBox" && "0"};
+    grid-area: ${type};
     border-bottom: 1px solid ${theme[color]};
     border-right: 1px solid ${theme[color]};
     border-left: 1px solid ${theme[color]};
@@ -100,7 +71,6 @@ export const Box = styled.div(
     border-radius: 0 0 10px 10px;
     border-top: none;
     position: relative;
-    ${type === "levelBox" && levelBoxStyle(level, isActive)};
     /* little triangle bottom and right  */
     &::after {
       top: calc(100% - 12px);

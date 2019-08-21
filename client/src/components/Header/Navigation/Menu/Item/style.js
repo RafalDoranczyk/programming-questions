@@ -7,6 +7,10 @@ export const Item = styled.li`
   /* justify-content: space-between; */
   border-bottom: 1px solid #555;
   /* background-color: green; */
+  @media (min-width: 800px) {
+    border: none;
+    font-size: 12px;
+  }
 `;
 
 export const Icon = styled.i`
@@ -27,4 +31,8 @@ export const StyledLink = styled(Link)`
   text-decoration: none;
   display: flex;
   align-items: center;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.5;
+  }
 `;

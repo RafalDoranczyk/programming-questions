@@ -21,21 +21,12 @@ const SingleQuestionContainer = ({
         Autor: <span>{author}</span>
       </S.Author>
 
-      <S.Button>Pokaż odpowiedzi (3)</S.Button>
+      <S.Button onClick={() => onClick({ id, value: 1 })}>
+        Super pytanie!
+        <i className="far fa-thumbs-up" />
+      </S.Button>
 
-      <S.LikeBox>
-        <S.AllLikes>{likes}</S.AllLikes>
-        <S.LikeButton
-          type="like"
-          onClick={() => onClick({ id, value: 1 })}
-          className="far fa-thumbs-up"
-        />
-        <S.LikeButton
-          type="dislike"
-          onClick={() => onClick({ id, value: -1 })}
-          className="far fa-thumbs-down"
-        />
-      </S.LikeBox>
+      <S.LikeBox likes={likes}>{likes}</S.LikeBox>
     </S.SingleQuestionContainer>
   );
 };

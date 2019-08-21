@@ -25,7 +25,8 @@ export const ButtonToChoose = styled.button(
     overflow: hidden;
     position: relative;
     font-size: 12px;
-    &:focus {
+    &:focus,
+    &:hover {
       box-shadow: 0 1px 10px rgba(0, 0, 0, 0.12), 0 1px 10px rgba(0, 0, 0, 0.24);
     }
     &::after {
@@ -34,9 +35,7 @@ export const ButtonToChoose = styled.button(
       width: 100%;
       height: 100%;
       transition: 0.3s ease;
-      transform: ${isActive
-        ? "translateX(0) "
-        : "translateX(-100%)"};
+      transform: ${isActive ? "translateX(0) " : "translateX(-100%)"};
       border-radius: 10px;
       background-color: ${color};
       opacity: 0.3;

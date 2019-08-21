@@ -18,7 +18,7 @@ export const GridWrapper = styled.div(
     grid-template-areas:
       "heading heading heading heading "
       " question question question question "
-      ".  . author author"
+      ". . . author"
       ". button button ."
       " answer answer answer answer ";
     gap: 20px;
@@ -31,6 +31,9 @@ export const GridWrapper = styled.div(
     transition: 0.4s;
     transform: ${isActive ? "scale(1)" : "scale(0.9)"};
     overflow: hidden;
+    box-shadow: ${isActive
+      ? " 0 9px px rgba(0,0,0,0.16), 0 9px px rgba(0,0,0,0.23)"
+      : " 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)"};
   `
 );
 
@@ -52,6 +55,7 @@ export const Answer = styled.p(
     transition: 0.3s ease;
     text-align: justify;
     font-size: 13px;
+    padding: 5px;
   `
 );
 
