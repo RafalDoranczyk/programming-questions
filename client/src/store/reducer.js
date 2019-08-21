@@ -30,10 +30,10 @@ const fetchDataBegin = state => updateState(state, { isSpinnerShowed: true });
 // MAIN FUNCTION, STARTS ON APP OPEN
 
 const fetchApprovedQuestionsSucceeded = (state, allApprovedQuestions) => {
-  // localStorage.setItem(
-  //   "allApprovedQuestions",
-  //   JSON.stringify(allApprovedQuestions)
-  // );
+  localStorage.setItem(
+    "allApprovedQuestions",
+    JSON.stringify(allApprovedQuestions)
+  );
   const createdTechnologyButtons = C.BUTTON_MODELS.filter(({ technology }) =>
     allApprovedQuestions.find(question => question.technology === technology)
   );
@@ -138,10 +138,6 @@ const postRateQuestionFailure = (state, error) => {
 };
 // SYNC ACTIONS
 
-const clearStorageOnPageChange = state => {
-  return updateState(state);
-};
-
 const filterPendingQuestions = (state, chosenTechnologyForFilter) => {
   let allPendingQuestions = state.allPendingQuestions.slice();
   if (chosenTechnologyForFilter === "Wszystkie") {
@@ -168,6 +164,16 @@ const answerHandler = state =>
   updateState(state, {
     isAnswerShowed: !state.isAnswerShowed
   });
+
+const menuItemHandler = state => {
+  localStorage.removeItem("slideIndex");
+  return updateState(state, {
+    chosenQuestionsTechnology: "",
+    isNavigationShowed: !state.isNavigationShowed,
+    isMenuShowed: !state.isMenuShowed,
+    chosenTechnologyForFilter: ""
+  });
+};
 
 const navigationHandler = state =>
   updateState(state, {
@@ -248,6 +254,8 @@ const reducer = (state = initialState, action) => {
       return navigationHandler(state);
     case types.FILTER_PENDING_QUESTIONS:
       return filterPendingQuestions(state, action.chosenTechnologyForFilter);
+    case types.MENU_ITEM_HANDLER:
+      return menuItemHandler(state);
     default:
       return state;
   }

@@ -1,6 +1,9 @@
 import styled, { css } from "styled-components";
 
+import { pageMove } from "views/style";
+
 export const Wrapper = styled.div`
+  animation: ${pageMove} 0.3s ease;
   height: 70vh;
   max-width: 500px;
   margin: 10px auto 0 auto;

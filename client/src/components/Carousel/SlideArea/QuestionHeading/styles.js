@@ -71,6 +71,7 @@ export const Box = styled.div(
     border-radius: 0 0 10px 10px;
     border-top: none;
     position: relative;
+    border: ${type === "levelBox" && "none"};
     /* little triangle bottom and right  */
     &::after {
       top: calc(100% - 12px);

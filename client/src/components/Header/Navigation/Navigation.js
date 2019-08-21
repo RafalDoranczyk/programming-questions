@@ -7,8 +7,8 @@ import actions from "store";
 const Navigation = ({
   isNavigationShowed,
   color,
-  navigationHandler,
-  changeChosenTechnology
+  menuItemHandler,
+  
 }) => {
   const menuItems = [
     {
@@ -33,14 +33,7 @@ const Navigation = ({
     }
   ];
 
-  menuItems.forEach(
-    item =>
-      (item.onClick = () => {
-        localStorage.removeItem("slideIndex");
-        changeChosenTechnology();
-        navigationHandler();
-      })
-  );
+  menuItems.forEach(item => (item.onClick = () => menuItemHandler()));
 
   return (
     <S.Navigation
@@ -54,8 +47,7 @@ const Navigation = ({
 
 const mapStateToProps = state => ({});
 const mapDispatchToProps = dispatch => ({
-  navigationHandler: () => dispatch(actions.navigationHandler()),
-  changeChosenTechnology: () => dispatch(actions.changeChosenTechnology(""))
+  menuItemHandler: () => dispatch(actions.menuItemHandler())
 });
 
 export default connect(

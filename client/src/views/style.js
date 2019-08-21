@@ -1,5 +1,14 @@
-import styled, { css } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import React from "react";
+
+export const pageMove = keyframes`
+from{
+  opacity: 0;
+}
+to{
+  opacity: 1
+}
+`;
 
 const Wrapper = styled.div(
   ({ theme, color, isSpinnerShowed }) => css`

@@ -26,6 +26,9 @@ const Header = ({
     case routes.pendingQuestions:
       path = "Pytania w kolejce";
       break;
+    case routes.admin:
+      path = "Admin - logowanie";
+      break;
     default:
       path = `${pathname.slice(length)} - pytania`;
   }

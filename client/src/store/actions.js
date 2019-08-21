@@ -3,7 +3,9 @@ import * as types from "./types";
 export const navigationHandler = () => ({
   type: types.NAVIGATION_HANDLER
 });
-
+export const menuItemHandler = () => ({
+  type: types.MENU_ITEM_HANDLER
+});
 export const answerHandler = () => ({
   type: types.ANSWER_HANDLER
 });
