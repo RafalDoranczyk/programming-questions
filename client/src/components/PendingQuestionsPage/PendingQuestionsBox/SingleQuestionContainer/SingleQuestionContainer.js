@@ -9,7 +9,8 @@ const SingleQuestionContainer = ({
   author,
   icon,
   likes,
-  onClick
+  onClick,
+  isLiked
 }) => {
   return (
     <S.SingleQuestionContainer color={color}>
@@ -21,8 +22,12 @@ const SingleQuestionContainer = ({
         Autor: <span>{author}</span>
       </S.Author>
 
-      <S.Button onClick={() => onClick({ id, value: 1 })}>
-        Super pytanie!
+      <S.Button
+        isLiked={isLiked}
+        disabled={isLiked}
+        onClick={() => onClick({ id, value: 1 })}
+      >
+        {isLiked ? "Już polubiłeś to pytanie" : "Super pytanie!"}
         <i className="far fa-thumbs-up" />
       </S.Button>
 

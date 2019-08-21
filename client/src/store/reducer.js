@@ -55,13 +55,36 @@ const fetchApprovedQuestionsSucceeded = (state, allApprovedQuestions) => {
 const fetchApprovedQuestionsFailure = (state, err) =>
   updateState(state, { isSpinnerShowed: false });
 
-const fetchPendingQuestionsSucceeded = (state, allPendingQuestions) => {
+const checkAlreadyLikedQuestions = (allPendingQuestions, alreadyLiked) => {
+  return allPendingQuestions.map(question => {
+    alreadyLiked.find(liked => {
+      if (liked === question._id) {
+        return (question.isLiked = true);
+      } else {
+        return (question.isLiked = false);
+      }
+    });
+    return question;
+  });
+};
+
+const fetchPendingQuestionsSucceeded = (
+  state,
+  allPendingQuestions,
+  alreadyLiked
+) => {
   const pendingTechnologies = [
     ...new Set(allPendingQuestions.map(question => question.technology))
   ];
 
   allPendingQuestions.forEach(question => (question.isShowed = true));
-  allPendingQuestions.forEach(question =>
+
+  const updatedWithAlreadyLiked = checkAlreadyLikedQuestions(
+    allPendingQuestions,
+    alreadyLiked
+  );
+
+  updatedWithAlreadyLiked.forEach(question =>
     C.BUTTON_MODELS.find(model => {
       if (model.technology === question.technology) {
         question.icon = model.icon;
@@ -71,7 +94,7 @@ const fetchPendingQuestionsSucceeded = (state, allPendingQuestions) => {
   );
 
   return updateState(state, {
-    allPendingQuestions,
+    allPendingQuestions: updatedWithAlreadyLiked,
     pendingTechnologies,
     isSpinnerShowed: false
   });
@@ -93,15 +116,20 @@ const postUserQuestionSucceeded = state => {
 const postUserQuestionFailure = state =>
   updateState(state, { isSpinnerShowed: false });
 
-const postRateQuestionSucceeded = (state, likes, id) => {
-  const likedQuestions = [localStorage.getItem("likedQuestions")];
-  likedQuestions.push(id);
-  localStorage.setItem("likedQuestions", likedQuestions);
+const postRateQuestionSucceeded = (state, likes, id, alreadyLiked) => {
   const allPendingQuestions = state.allPendingQuestions.slice();
   const index = allPendingQuestions.findIndex(question => question._id === id);
-  const questionToUpdate = allPendingQuestions[index];
-  questionToUpdate.likes = likes;
-  return updateState(state, { isSpinnerShowed: false, allPendingQuestions });
+  allPendingQuestions[index].likes = likes;
+
+  const updatedWithAlreadyLiked = checkAlreadyLikedQuestions(
+    allPendingQuestions,
+    alreadyLiked
+  );
+
+  return updateState(state, {
+    isSpinnerShowed: false,
+    allPendingQuestions: updatedWithAlreadyLiked
+  });
 };
 
 const postRateQuestionFailure = (state, error) => {
@@ -183,7 +211,11 @@ const reducer = (state = initialState, action) => {
         action.allApprovedQuestions
       );
     case types.FETCH_PENDING_QUESTIONS_SUCCEEDED:
-      return fetchPendingQuestionsSucceeded(state, action.allPendingQuestions);
+      return fetchPendingQuestionsSucceeded(
+        state,
+        action.allPendingQuestions,
+        action.alreadyLiked
+      );
 
     //post's
     case types.POST_DATA_BEGIN:
@@ -193,7 +225,12 @@ const reducer = (state = initialState, action) => {
     case types.POST_USER_QUESTION_FAILURE:
       return postUserQuestionFailure(state, action);
     case types.POST_RATE_QUESTION_SUCCEEDED:
-      return postRateQuestionSucceeded(state, action.likes, action.id);
+      return postRateQuestionSucceeded(
+        state,
+        action.likes,
+        action.id,
+        action.alreadyLiked
+      );
     case types.POST_RATE_QUESTION_FAILURE:
       return postRateQuestionFailure(state, action);
     // SYNC ACTIONS

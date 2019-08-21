@@ -46,10 +46,16 @@ export const fetchApprovedQuestions = () => dispatch => {
         .catch(error => dispatch(fetchApprovedQuestionsFailure(error)));
 };
 
-export const fetchPendingQuestionsSucceeded = allPendingQuestions => ({
-  type: types.FETCH_PENDING_QUESTIONS_SUCCEEDED,
-  allPendingQuestions
-});
+export const fetchPendingQuestionsSucceeded = ({
+  allPendingQuestions,
+  alreadyLiked
+}) => {
+  return {
+    type: types.FETCH_PENDING_QUESTIONS_SUCCEEDED,
+    allPendingQuestions,
+    alreadyLiked
+  };
+};
 
 export const fetchPendingQuestionsFailure = err => ({
   type: types.FETCH_PENDING_QUESTIONS_FAILURE,
@@ -82,10 +88,11 @@ export const postUserQuestion = payload => dispatch => {
     .catch(error => dispatch(postUserQuestionFailure(error)));
 };
 
-export const postRateQuestionSucceeded = ({ likes, id }) => ({
+export const postRateQuestionSucceeded = ({ likes, id, alreadyLiked }) => ({
   type: types.POST_RATE_QUESTION_SUCCEEDED,
   likes,
-  id
+  id,
+  alreadyLiked
 });
 export const postRateQuestionFailure = error => ({
   type: types.POST_RATE_QUESTION_FAILURE,

@@ -3,11 +3,17 @@ const mongoose = require("mongoose");
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
+const session = require("express-session");
+const MongoDBStore = require("connect-mongodb-session")(session);
 const config = require("./config");
 const ApprovedQuestion = require("./models/ApprovedQuestion");
 const SuggestedQuestion = require("./models/SuggestedQuestion");
 // Define Global Variables
 const app = express();
+const store = new MongoDBStore({
+  uri: "mongodb+srv://Rafix111:Rasengan1@rq-2jsha.mongodb.net/RekrutacjaIT",
+  collection: "sessions"
+});
 const PORT = process.env.PORT || 5000;
 mongoose.connect(encodeURI(config.db || process.env.DB_CONNECT), {
   useNewUrlParser: true,
@@ -16,6 +22,14 @@ mongoose.connect(encodeURI(config.db || process.env.DB_CONNECT), {
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(
+  session({
+    secret: "secret",
+    resave: false,
+    saveUninitialized: false,
+    store: store
+  })
+);
 
 app.get("/api/questions-approved", (req, res) => {
   const q = "Przykładowe pytanie z Django ?";
@@ -32,7 +46,15 @@ app.get("/api/questions-approved", (req, res) => {
 });
 
 app.get("/api/questions-pending", (req, res) => {
-  SuggestedQuestion.find((err, doc) => res.json(doc));
+  let alreadyLiked;
+  if (req.session.alreadyLiked) {
+    alreadyLiked = req.session.alreadyLiked;
+  } else {
+    alreadyLiked = [];
+  }
+  SuggestedQuestion.find((err, allPendingQuestions) =>
+    res.json({ allPendingQuestions, alreadyLiked })
+  );
 });
 
 app.post("/api/questions-pending-send", (req, res) => {
@@ -53,6 +75,13 @@ app.post("/api/questions-pending-send", (req, res) => {
 
 app.post("/api/questions-like", (req, res) => {
   const { id, value } = req.body;
+  if (req.session.alreadyLiked) {
+    req.session.alreadyLiked = [...req.session.alreadyLiked, id];
+  } else {
+    req.session.alreadyLiked = [id];
+  }
+  const alreadyLiked = req.session.alreadyLiked;
+
   SuggestedQuestion.findOneAndUpdate(
     { _id: id },
     { $inc: { likes: value } },
@@ -62,7 +91,7 @@ app.post("/api/questions-like", (req, res) => {
         res.json(err);
       } else {
         const { likes } = doc;
-        res.json({ likes, id });
+        res.json({ likes, id, alreadyLiked });
       }
     }
   );

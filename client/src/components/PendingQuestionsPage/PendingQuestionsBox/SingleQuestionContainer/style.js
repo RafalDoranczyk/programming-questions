@@ -29,27 +29,14 @@ export const SingleQuestionContainer = styled.div(
       ".   . likeBox"
       "button  . likeBox";
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    transition: 0.5s ease transform;
     cursor: pointer;
     position: relative;
-    &::after {
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: ${color};
-      opacity: 0;
-      z-index: -1;
-      transition: 0.5s ease opacity;
-    }
+    transition: 0.3s;
 
     &:hover,
     &:focus-within {
       transform: scale(1.05);
       box-shadow: 0 1px 12px rgba(0, 0, 0, 0.12), 0 1px 12px rgba(0, 0, 0, 0.24);
-      &::after {
-        opacity: 0.15;
-      }
     }
   `
 );
@@ -68,23 +55,25 @@ export const Author = styled.p`
   font-style: italic;
 `;
 
-export const Button = styled.button`
-  grid-area: button;
-  display: flex;
-  justify-content: space-evenly;
-  box-shadow: 0 0 2px 1px #ddd;
-  border-radius: 5px;
-  font-size: 12px;
-  width: 80%;
-  padding: 0 10px;
-  & > i {
-    height: 100%;
-  }
-  &:focus,
-  &:hover {
-    animation: ${buttonMove} 0.3s ease;
-  }
-`;
+export const Button = styled.button(
+  ({ isLiked }) => css`
+    grid-area: button;
+    display: flex;
+    justify-content: space-evenly;
+    box-shadow: 0 0 2px 1px #ddd;
+    border-radius: 5px;
+    font-size: 12px;
+    width: 80%;
+    padding: 0 10px;
+    & > i {
+      display: ${isLiked && "none"};
+    }
+    &:focus,
+    &:hover {
+      animation: ${buttonMove} 0.3s ease;
+    }
+  `
+);
 
 export const Icon = styled.div(
   ({ color }) => css`
@@ -107,7 +96,6 @@ export const LikeBox = styled.div(
     align-items: center;
     color: #222;
     border-radius: 5px;
-
     background-color: ${likes > 0
       ? "#7bc087"
       : likes < 0

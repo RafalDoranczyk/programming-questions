@@ -3,17 +3,18 @@ import SingleQuestionContainer from "./SingleQuestionContainer/SingleQuestionCon
 import * as S from "./styles";
 const PendingQuestionsBox = ({ postRateQuestion, allPendingQuestions }) => {
   const pendingQuestionsToRender = allPendingQuestions.map(
-    question =>
-      question.isShowed && (
+    q =>
+      q.isShowed && (
         <SingleQuestionContainer
-          key={question._id}
-          author={question.author}
-          date={question.date}
-          id={question._id}
-          question={question.question}
-          icon={question.icon}
-          color={question.color}
-          likes={question.likes}
+          key={q._id}
+          author={q.author}
+          date={q.date}
+          id={q._id}
+          question={q.question}
+          icon={q.icon}
+          color={q.color}
+          likes={q.likes}
+          isLiked={q.isLiked}
           onClick={postRateQuestion}
         />
       )
